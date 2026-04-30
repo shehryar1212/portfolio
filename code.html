@@ -1,0 +1,559 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SHEHRYAR_DEV | AI Automation Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary-container": "#454747",
+                        "on-primary-container": "#006c5c",
+                        "primary-container": "#00f5d4",
+                        "background": "#0a0a0a",
+                        "on-primary-fixed-variant": "#005144",
+                        "inverse-on-surface": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary": "#3c2f00",
+                        "tertiary-fixed-dim": "#eac33f",
+                        "on-primary": "#00382f",
+                        "surface-tint": "#00dfc1",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#231b00",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "surface-variant": "#353535",
+                        "surface-container-high": "#2a2a2a",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-bright": "#393939",
+                        "surface-container-highest": "#353535",
+                        "inverse-primary": "#006b5b",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-container": "#ffd651",
+                        "on-surface-variant": "#b9cac4",
+                        "tertiary-fixed": "#ffe086",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-secondary-container": "#b4b5b5",
+                        "primary-fixed-dim": "#00dfc1",
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#83948f",
+                        "secondary": "#c6c6c7",
+                        "on-secondary": "#2f3131",
+                        "primary": "#d7fff3",
+                        "outline-variant": "#3a4a46",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#745c00",
+                        "tertiary": "#fff5e4",
+                        "primary-fixed": "#26fedc",
+                        "on-primary-fixed": "#00201a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-container": "#20201f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "section": "128px",
+                        "xl": "64px",
+                        "lg": "32px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "mono-label": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "display-xl": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "mono-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 32px 32px;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBxMpJx41vjoMTuew3eXhxLzebTkpfSTQcmUjoK3rRKYysN5na3SS3l4pkY2155BvkmTTIFEwaPNW2RiWWyCzvZgzOO11IzHrUxx7h6tBO2RP0cYcBH4i8qUKvBXhsIq_Al6nfIU49HPcHuKFhgzaX_Yn-lqib8gXj1vNlR-Yd-xJwpUcbvuRFQSKqeeBy0LyOqX8J2fQA2DkHqHLfrP-AKomtNdo_hoeTzBRJb1pVUxzXy6c4SqEN5cjVueZYjKlMK_yn8J1-0byE)
+        }
+        .cursor-blink {
+            display: inline-block;
+            width: 12px;
+            height: 24px;
+            background-color: #00f5d4;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 4px
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .terminal-glow:hover {
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+            border-color: #00f5d4 !important
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 245, 212, 0.4)
+        }
+        .arch-grid {
+            background-image: linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .floating-stat {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(1000%); }
+        }
+
+        /* Scroll Animation Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary-container selection:text-on-primary">
+<div class="grain-overlay"></div>
+<!-- Navigation -->
+<header class="bg-neutral-950/80 backdrop-blur-sm fixed top-0 w-full border-b border-neutral-800 rounded-none z-50">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
+<div class="font-mono font-bold text-cyan-400 text-lg tracking-widest">SHEHRYAR_AHMED</div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tighter uppercase">
+<a class="text-neutral-400 hover:text-cyan-400 transition-colors" href="#projects">Projects</a>
+<a class="text-neutral-400 hover:text-cyan-400 transition-colors" href="#services">Services</a>
+<a class="text-neutral-400 hover:text-cyan-400 transition-colors" href="#process">Process</a>
+<a class="text-neutral-400 hover:text-cyan-400 transition-colors" href="#contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-32">
+<!-- Hero Section -->
+<section class="min-h-[716px] flex flex-col justify-center grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6 reveal-left active">
+<p class="font-mono-label text-primary-container tracking-widest uppercase mb-4">system.init("developer_mode")</p>
+<h1 class="font-display-xl text-on-surface max-w-4xl">
+                AI Automation Developer. Web Scraping. n8n. Voice agents<span class="cursor-blink"></span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">
+                I build pipelines that do the boring stuff — so you can focus on what matters. Precision-engineered solutions for lead generation and business scaling.
+            </p>
+<div class="flex flex-wrap gap-4 pt-8">
+<a class="bg-primary-container text-on-primary px-8 py-4 font-mono-label uppercase tracking-widest hover:drop-shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all inline-block" href="https://www.upwork.com/freelancers/~0181aea4f1c8455eda" target="_blank">CONTACT ON UPWORK</a>
+<a class="border border-primary-container text-primary-container px-8 py-4 font-mono-label uppercase tracking-widest hover:bg-primary-container/10 transition-all inline-block" href="#contact">
+                    Let's Talk
+                </a>
+</div>
+</div>
+<div class="hidden md:flex justify-center items-center relative reveal-right active">
+<div class="relative group">
+<!-- Technical Frame Decor -->
+<div class="absolute -inset-4 border border-primary-container/20 pointer-events-none"></div>
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary-container/60"></div>
+<div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-primary-container/60"></div>
+<!-- Image Container with Glow -->
+<div class="relative aspect-[2/3] w-full max-w-[380px] overflow-hidden border border-neutral-800 bg-neutral-900 shadow-[0_0_50px_rgba(0,245,212,0.15)]">
+<img alt="Shehryar Dev - AI Automation Expert" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugHWQkfeA0_1e7xxD2aZQXb_a3ZKahNc_6u7-SzkHodsmTouUd-qLfOMYGGzUXozEYpPDAPGjK31xgcAPPxlQshsKuKbpOdFx0jo-_bpqPuOgHMRE3oenoAHCNtH23LJ0F5K8q6hi6oWQwapZyTsQt2OjT04Xyd-I6leTmDlFjDio9DCsOb5rAxJXMCawquL6pe9gRqUxlNWhLa4QUeIYmFvnXT8lm6n4BAdVy3Fqtsk7MX062qh3DhhX1F0uJaxIRhzcyiP1dR">
+<!-- HUD Overlay Elements -->
+<div class="absolute top-4 left-4 font-mono text-[10px] text-primary-container uppercase tracking-widest opacity-60">
+                        Subject: DEV_CORE
+                    </div>
+<div class="absolute bottom-4 right-4 flex flex-col items-end gap-1">
+<div class="h-[1px] w-12 bg-primary-container/40"></div>
+<div class="font-mono text-[10px] text-primary-container uppercase tracking-widest opacity-60">Auth: 1.0.0</div>
+</div>
+<!-- Scanline Effect -->
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-primary-container/5 to-transparent h-2 w-full animate-[scan_4s_linear_infinite] opacity-20"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-section reveal active">
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+<span class="font-mono text-xs text-neutral-600 uppercase tracking-widest">--- system.stats ---</span>
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+</div>
+<!-- Architecture & Scale (System Command Center) -->
+<section class="relative min-h-[700px] bg-neutral-950 border border-neutral-900 overflow-hidden flex flex-col justify-center items-center py-20 px-12 reveal active" id="about">
+<!-- Architecture Background Visualization -->
+<div class="absolute inset-0 arch-grid pointer-events-none opacity-40"></div>
+<div class="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Content Side -->
+<div class="space-y-8 reveal-left active">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-on-surface">Architecture &amp; Scale</h2>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        I architect enterprise-grade automation infrastructures that bridge the gap between legacy systems and AI. Every deployment is optimized for maximum reliability and vertical scaling.
+                    </p>
+</div>
+<!-- Technical Metadata Cards -->
+<div class="grid grid-cols-3 gap-4">
+<div class="bg-neutral-900/80 border border-neutral-800 p-4 backdrop-blur-md reveal-delay-1">
+<div class="font-mono text-[10px] text-neutral-500 mb-1 uppercase">Uptime</div>
+<div class="font-mono text-xl text-primary-container">99.99%</div>
+</div>
+<div class="bg-neutral-900/80 border border-neutral-800 p-4 backdrop-blur-md reveal-delay-2">
+<div class="font-mono text-[10px] text-neutral-500 mb-1 uppercase">Ops/Sec</div>
+<div class="font-mono text-xl text-primary-container">1.2k</div>
+</div>
+<div class="bg-neutral-900/80 border border-neutral-800 p-4 backdrop-blur-md reveal-delay-3">
+<div class="font-mono text-[10px] text-neutral-500 mb-1 uppercase">Agents</div>
+<div class="font-mono text-xl text-primary-container">42</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">Python</span>
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">n8n</span>
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">Make.com</span>
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">Openclaw</span>
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">LLMs</span>
+<span class="px-3 py-1 border border-neutral-700 font-mono text-xs text-primary-container uppercase">Voice AI</span>
+</div>
+</div>
+<!-- Visual Side: System Command Center -->
+<div class="relative flex items-center justify-center h-[500px] reveal-right flex-col active">
+<div class="relative flex flex-col items-center justify-center h-full min-h-[500px]">
+<!-- Technical Callouts -->
+<div class="absolute inset-0 pointer-events-none z-20 font-mono text-[10px] uppercase tracking-wider">
+<div class="absolute top-0 left-4 bg-neutral-900/90 border border-primary-container/40 px-3 py-2 text-primary-container shadow-[0_0_10px_rgba(0,245,212,0.2)] floating-stat">
+<div class="text-xs font-bold">75% Reduction</div>
+<div class="text-[8px] opacity-70">Manual Tasks</div>
+</div>
+<div class="absolute top-1/4 right-0 bg-neutral-900/90 border border-primary-container/40 px-3 py-2 text-primary-container shadow-[0_0_10px_rgba(0,245,212,0.2)] floating-stat" style="animation-delay: 1s;">
+<div class="text-xs font-bold">+300%</div>
+<div class="text-[8px] opacity-70">Scaling Capacity</div>
+</div>
+<div class="absolute bottom-1/4 left-0 bg-neutral-900/90 border border-primary-container/40 px-3 py-2 text-primary-container shadow-[0_0_10px_rgba(0,245,212,0.2)] floating-stat" style="animation-delay: 2s;">
+<div class="text-xs font-bold">Break-even</div>
+<div class="text-[8px] opacity-70">&lt;30 Days</div>
+</div>
+</div>
+<!-- Growth Chart SVG -->
+<div class="w-full max-w-lg relative z-10">
+<svg class="w-full h-full overflow-visible" viewBox="0 0 400 200">
+<g class="stroke-neutral-800" stroke-dasharray="4" stroke-width="0.5">
+<line x1="0" x2="400" y1="0" y2="0"></line>
+<line x1="0" x2="400" y1="50" y2="50"></line>
+<line x1="0" x2="400" y1="100" y2="100"></line>
+<line x1="0" x2="400" y1="150" y2="150"></line>
+<line x1="0" x2="400" y1="200" y2="200"></line>
+</g>
+<path d="M 0 40 Q 100 60, 200 130 T 400 180" fill="none" stroke="#454747" stroke-width="2"></path>
+<text class="fill-neutral-500 font-mono text-[8px] uppercase" x="10" y="30">Manual Friction</text>
+<path class="drop-shadow-[0_0_8px_#00f5d4]" d="M 0 180 Q 150 170, 250 80 T 400 20" fill="none" stroke="#00f5d4" stroke-width="3"></path>
+<text class="fill-primary-container font-mono text-[8px] uppercase font-bold tracking-widest" x="280" y="40">Revenue Growth</text>
+<circle class="fill-primary-container shadow-glow" cx="235" cy="100" r="4"></circle>
+</svg>
+</div>
+<!-- Master Control Interface / Terminal -->
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-section reveal active">
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+<span class="font-mono text-xs text-neutral-600 uppercase tracking-widest">--- production.log ---</span>
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+</div>
+<!-- Projects Section -->
+<section class="space-y-xl" id="projects">
+<div class="text-center reveal active">
+<h2 class="font-headline-lg text-on-surface">Things I've Built</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Project 1 -->
+<div class="group bg-neutral-950 border border-neutral-800 p-8 transition-all duration-300 terminal-glow reveal active">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="travel_explore">travel_explore</span>
+<span class="font-mono text-xs text-neutral-600 uppercase">01 / LeadGen</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Google Maps Lead Scraper</h3>
+<p class="font-body-md text-on-surface-variant mb-6">High-speed scraper capable of extracting 50k+ local business records daily with automated data cleaning.</p>
+<div class="flex gap-4">
+<span class="text-primary-container font-mono text-xs">PYTHON</span>
+<span class="text-primary-container font-mono text-xs">SELENIUM</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group bg-neutral-950 border border-neutral-800 p-8 transition-all duration-300 terminal-glow reveal reveal-delay-1 active">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="translate">translate</span>
+<span class="font-mono text-xs text-neutral-600 uppercase">02 / NLP</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Real-Time Multilingual Subtitle System</h3>
+<p class="font-body-md text-on-surface-variant mb-6">WebSocket-based streaming engine that generates subtitles in 12 languages with &lt;200ms latency.</p>
+<div class="flex gap-4">
+<span class="text-primary-container font-mono text-xs">WHISPER</span>
+<span class="text-primary-container font-mono text-xs">FASTAPI</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group bg-neutral-950 border border-neutral-800 p-8 transition-all duration-300 terminal-glow reveal active">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="description">description</span>
+<span class="font-mono text-xs text-neutral-600 uppercase">03 / AI Agent</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">ATS Resume Builder</h3>
+<p class="font-body-md text-on-surface-variant mb-6">AI-driven tool that optimizes resumes against specific job descriptions using custom LLM scoring models.</p>
+<div class="flex gap-4">
+<span class="text-primary-container font-mono text-xs">GPT-4</span>
+<span class="text-primary-container font-mono text-xs">NODE.JS</span>
+</div>
+</div>
+</div>
+<!-- Client Success Subsection -->
+<div class="pt-16 space-y-lg">
+<div class="flex items-center gap-4 reveal active">
+<span class="font-mono text-xs text-primary-container uppercase tracking-[0.3em]">SUCCESS_LOG.EXE</span>
+<div class="h-[1px] flex-grow bg-neutral-800/50"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="relative bg-neutral-950 border border-neutral-800 p-1 terminal-glow transition-all duration-500 overflow-hidden reveal active">
+<div class="flex items-center justify-between px-3 py-1.5 border-b border-neutral-900 bg-neutral-900/30">
+<span class="font-mono text-[10px] text-neutral-500 uppercase tracking-tighter">ENTRY.001</span>
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/40"></div>
+</div>
+</div>
+<div class="relative">
+<img alt="Client Review 1" class="w-full h-auto block transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhcyg939E1uX-K8YjsN6byXEwKnA9yfil2xj9OcGyQ10DRYuD14f-9g6aTztHQXkF5qXu3Zr-uUL4gKeTreItYM0O7vWd4g9YQ-798RoaJqXYfTyqgKUqpZmC3SqsWcurPZC-9Axu5Gj9Mo8n7tIPa2Zb0-EW8Rhua1V8ChWl6i3DePKmoHdhMVAv6tapa7oPODhBtcguPGdE34-xjGhd1i7VE-qdI4dHMolw1rLt3ZP7hBtox0UQnFtvtZAR5ckmqvZV4PkpG3">
+</div>
+</div>
+<!-- Review 2 -->
+<div class="relative bg-neutral-950 border border-neutral-800 p-1 terminal-glow transition-all duration-500 overflow-hidden reveal reveal-delay-1 active">
+<div class="flex items-center justify-between px-3 py-1.5 border-b border-neutral-900 bg-neutral-900/30">
+<span class="font-mono text-[10px] text-neutral-500 uppercase tracking-tighter">ENTRY.002</span>
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/40"></div>
+</div>
+</div>
+<div class="relative">
+<img alt="Client Review 2" class="w-full h-auto block transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ug4eA0Iij_JIT8DW9aOl3XWUW7qYhQMBnmcaIdD-lP8kBDeIO1HFblarvtTEAnD6Yo7RTUoXd-6J3i70csQtSBcj4CEggx-pOeBMd_Ezj-xsKoZp-l4I6cJbewsGo7cf034VMzlmLODVMgKhk1wcIDl9M-5WfEtOL7vg0PzVv4RSmVTofBtSJH6mNO1D42cuHM6c5o4hvY1A4F8543F5j4SRt-zBhrGCEdT0h9gya6m_7Vp9W6ekuFQaKkba5oawiWQAaWzpTcnPA">
+</div>
+</div>
+<!-- Review 3 -->
+<div class="relative bg-neutral-950 border border-neutral-800 p-1 terminal-glow transition-all duration-500 overflow-hidden reveal reveal-delay-2 active">
+<div class="flex items-center justify-between px-3 py-1.5 border-b border-neutral-900 bg-neutral-900/30">
+<span class="font-mono text-[10px] text-neutral-500 uppercase tracking-tighter">ENTRY.003</span>
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/40"></div>
+</div>
+</div>
+<div class="relative">
+<img alt="Client Review 3" class="w-full h-auto block transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhJjgEww_Rh_8iJMZw7owmSWIdZOgOJr1N20UjiejRlwa-OGq3bPH1aqpcEntKAmG3VQ0qFRGKTLqcFWZOKIB1kY8DA5GjeekUsLfQzFqrO8N4jhY7BChiN7u_K3Yk9MWMH29QvLpmZVtP65zm2VP5r04kBDoyLj5DJs9X83vc8WzLwuteko9KGaGB1JVrZjzVdCP981eCu7boo8xHnOWOHlrZs7JwEEo5c7gRhKPPovKuQHNoDnWb0de7rf-OrVIvix6rEEwNOrg">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-section reveal active">
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+<span class="font-mono text-xs text-neutral-600 uppercase tracking-widest">--- services.exec ---</span>
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+</div>
+<!-- Services Section -->
+<section class="space-y-xl" id="services">
+<div class="text-center reveal active">
+<h2 class="font-headline-lg text-on-surface">What I Can Do For You</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="border-l border-neutral-800 pl-8 py-4 reveal active">
+<h3 class="font-headline-md text-primary-container mb-4">AI Automation</h3>
+<p class="font-body-md text-on-surface-variant">Connecting disparate apps using n8n or Make.com to eliminate manual data entry and recurring workflows.</p>
+</div>
+<div class="border-l border-neutral-800 pl-8 py-4 reveal reveal-delay-1 active">
+<h3 class="font-headline-md text-primary-container mb-4">Web Scraping</h3>
+<p class="font-body-md text-on-surface-variant">Custom data extraction from any website, regardless of anti-scraping measures. structured data delivery in CSV/JSON.</p>
+</div>
+<div class="border-l border-neutral-800 pl-8 py-4 reveal reveal-delay-2 active">
+<h3 class="font-headline-md text-primary-container mb-4">AI-Powered Tools</h3>
+<p class="font-body-md text-on-surface-variant">Building custom interfaces and API wrappers around LLMs to solve specific business intelligence problems.</p>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-section reveal active">
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+<span class="font-mono text-xs text-neutral-600 uppercase tracking-widest">--- workflow.yml ---</span>
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+</div>
+<!-- Process Section -->
+<section class="space-y-xl" id="process">
+<div class="text-center reveal active">
+<h2 class="font-headline-lg text-on-surface">How I Work</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+<div class="border border-neutral-800 p-12 relative group overflow-hidden reveal active">
+<div class="absolute -bottom-8 -right-8 text-neutral-900 font-display-xl text-[120px] select-none group-hover:text-neutral-800 transition-colors">01</div>
+<h3 class="font-headline-md text-on-surface mb-4">Free Demo First</h3>
+<p class="font-body-md text-on-surface-variant relative z-10">I prove the concept before you pay a dime. No technical debt or surprises.</p>
+</div>
+<div class="border border-neutral-800 p-12 relative group overflow-hidden md:-ml-[1px] reveal reveal-delay-1 active">
+<div class="absolute -bottom-8 -right-8 text-neutral-900 font-display-xl text-[120px] select-none group-hover:text-neutral-800 transition-colors">02</div>
+<h3 class="font-headline-md text-on-surface mb-4">Ship Fast</h3>
+<p class="font-body-md text-on-surface-variant relative z-10">Prototypes in days, not weeks. I prioritize minimum viable automation over perfection.</p>
+</div>
+<div class="border border-neutral-800 p-12 relative group overflow-hidden md:-ml-[1px] reveal reveal-delay-2 active">
+<div class="absolute -bottom-8 -right-8 text-neutral-900 font-display-xl text-[120px] select-none group-hover:text-neutral-800 transition-colors">03</div>
+<h3 class="font-headline-md text-on-surface mb-4">Document Everything</h3>
+<p class="font-body-md text-on-surface-variant relative z-10">Clean code and clear documentation so your team can maintain the system easily.</p>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-section reveal active">
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+<span class="font-mono text-xs text-neutral-600 uppercase tracking-widest">--- contact.req ---</span>
+<div class="h-[1px] flex-grow bg-neutral-800"></div>
+</div>
+<!-- Contact Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-xl reveal active" id="contact">
+<div class="space-y-6 reveal-left active">
+<h2 class="font-headline-lg text-on-surface">Let's Build Something</h2>
+<p class="font-body-lg text-on-surface-variant">Ready to automate your business? Send a message or find me on these platforms.</p>
+<div class="flex flex-col gap-4 max-w-sm">
+<a class="flex items-center justify-between border border-neutral-800 p-4 hover:border-primary-container transition-all group" href="https://www.upwork.com/freelancers/~0181aea4f1c8455eda" target="_blank">
+<span class="font-mono text-sm uppercase">Upwork Profile</span>
+<span class="material-symbols-outlined text-neutral-600 group-hover:text-primary-container" data-icon="open_in_new">open_in_new</span>
+</a>
+<a class="flex items-center justify-between border border-neutral-800 p-4 hover:border-primary-container transition-all group" href="https://www.linkedin.com/in/shehryar-ahmed-4173b8200/" target="_blank">
+<span class="font-mono text-sm uppercase">LinkedIn profile</span>
+<span class="material-symbols-outlined text-neutral-600 group-hover:text-primary-container" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<div class="bg-neutral-900/50 p-8 border border-neutral-800 reveal-right active">
+<form action="mailto:ahmedshehryar080@gmail.com" class="space-y-6" enctype="text/plain" method="POST">
+<div class="space-y-2">
+<label class="font-mono-label text-neutral-500 uppercase text-xs">Your.name</label>
+<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="text">
+</div>
+<div class="space-y-2">
+<label class="font-mono-label text-neutral-500 uppercase text-xs">Email</label>
+<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="email">
+</div>
+<div class="space-y-2">
+<label class="font-mono-label text-neutral-500 uppercase text-xs">message</label>
+<textarea class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-4 font-mono-label uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
+                    send_request()
+                </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-950 border-t border-neutral-800 mt-32 rounded-none">
+<div class="flex flex-col items-center max-w-7xl mx-auto px-6 py-12 gap-4 reveal active">
+<div class="text-neutral-500 font-mono text-[10px] md:text-xs uppercase tracking-widest text-center mb-6">
+            © 2024 SYSTEM_INIT. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4 font-mono text-sm uppercase tracking-[0.2em]">
+<a class="text-primary-container hover:text-white transition-all text-glow" href="https://github.com/shehryar1212?tab=repositories" target="_blank">GITHUB</a>
+<a class="text-primary-container hover:text-white transition-all text-glow" href="https://www.linkedin.com/in/shehryar-ahmed-4173b8200/" target="_blank">LINKEDIN</a>
+</div>
+</div>
+</footer>
+<script>
+    function revealOnScroll() {
+        var reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    // Trigger on load for elements already in view
+    document.addEventListener("DOMContentLoaded", revealOnScroll);
+</script>
+
+
+</body></html>
