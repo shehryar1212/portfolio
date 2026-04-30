@@ -505,20 +505,24 @@
 </div>
 </div>
 <div class="bg-neutral-900/50 p-8 border border-neutral-800 reveal-right active">
-<form action="mailto:ahmedshehryar080@gmail.com" class="space-y-6" enctype="text/plain" method="POST">
+<form id="contact-form" class="space-y-6" method="POST">
+<input type="hidden" name="access_key" value="027dc8f9-ffd7-40bc-911d-1b63a39ff218">
+<input type="hidden" name="subject" value="New Contact Request from Portfolio">
+<input type="hidden" name="from_name" value="Portfolio Contact Form">
 <div class="space-y-2">
 <label class="font-mono-label text-neutral-500 uppercase text-xs">Your.name</label>
-<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="text">
+<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="text" name="name" required>
 </div>
 <div class="space-y-2">
 <label class="font-mono-label text-neutral-500 uppercase text-xs">Email</label>
-<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="email">
+<input class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" type="email" name="email" required>
 </div>
 <div class="space-y-2">
 <label class="font-mono-label text-neutral-500 uppercase text-xs">message</label>
-<textarea class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" rows="4"></textarea>
+<textarea class="w-full bg-neutral-950 border border-neutral-800 px-4 py-3 focus:outline-none focus:border-primary-container text-on-surface" rows="4" name="message" required></textarea>
 </div>
-<button class="w-full bg-primary-container text-on-primary py-4 font-mono-label uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
+<div id="form-status" class="hidden font-mono text-xs uppercase tracking-widest py-2 text-center"></div>
+<button id="submit-btn" class="w-full bg-primary-container text-on-primary py-4 font-mono-label uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
                     send_request()
                 </button>
 </form>
@@ -538,6 +542,33 @@
 </div>
 </footer>
 <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const status = document.getElementById('form-status');
+        btn.disabled = true;
+        btn.textContent = 'sending...';
+        status.className = 'hidden font-mono text-xs uppercase tracking-widest py-2 text-center';
+
+        const data = new FormData(this);
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+            const json = await res.json();
+            if (json.success) {
+                status.textContent = '> message sent successfully';
+                status.className = 'font-mono text-xs uppercase tracking-widest py-2 text-center text-primary-container';
+                this.reset();
+            } else {
+                throw new Error(json.message);
+            }
+        } catch (err) {
+            status.textContent = '> error: ' + (err.message || 'submission failed');
+            status.className = 'font-mono text-xs uppercase tracking-widest py-2 text-center text-error';
+        }
+        btn.disabled = false;
+        btn.textContent = 'send_request()';
+    });
+
     function revealOnScroll() {
         var reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
         for (var i = 0; i < reveals.length; i++) {
